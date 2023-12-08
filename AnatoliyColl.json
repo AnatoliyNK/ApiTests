@@ -7,6 +7,64 @@
 	},
 	"item": [
 		{
+			"name": "TeacherLogin",
+			"item": [
+				{
+					"name": "Success Teacer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your user email\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user.email).to.eql(\"anatoliy.nk84+1@gmail.com\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your user role\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user.role).to.eql(\"TEACHER\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Set up token\", function () {\r",
+									"    pm.environment.set(\"teacherToken\", pm.response.json().token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"anatoliy.nk84+1@gmail.com\",\r\n  \"password\": \"a052623\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sign-in",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "CreateUser",
 			"item": [
 				{
@@ -169,6 +227,64 @@
 							""
 						]
 					}
+				}
+			]
+		},
+		{
+			"name": "StudentLogin",
+			"item": [
+				{
+					"name": "Success Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your user email\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user.email).to.eql(\"anatoliy.nk84+3@gmail.com\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your user role\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user.role).to.eql(\"STUDENT\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Set up token\", function () {\r",
+									"    pm.environment.set(\"studentToken\", pm.response.json().token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{newUserEmail}}\",\r\n  \"password\": \"{{newUserPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sign-in",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sign-in"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
