@@ -246,7 +246,7 @@
 									"\r",
 									"pm.test(\"Your user email\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.user.email).to.eql(\"anatoliy.nk84+3@gmail.com\");\r",
+									"    pm.expect(jsonData.user.email).to.eql(pm.environment.get(\"newUserEmail\"));\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Your user role\", function () {\r",
